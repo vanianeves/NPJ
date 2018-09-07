@@ -1,0 +1,67 @@
+﻿
+<head>
+    <meta charset="UTF-8"/>
+</head>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- Default box -->
+<div th:fragment="content" class="box box-primary">
+   <h2><p style="text-align: center; color: crimson; font-weight: bold" th:text="${messages}"></p></h2>
+    <div class="box-header with-border">
+        <h3 class="box-title">Colaboradores cadastrados</h3>
+        <div class="box-tools pull-right">
+        </div>
+    </div>
+    <div class="box-body no-padding">
+        <table class="table table-stripped table-responsive table-hover">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>OAB</th>
+                <th>Matrícula UFJF</th>
+                <th>Celular</th>
+                <th>Tel Residencial</th>
+                <th>Status</th>
+                <th>Criado em</th>
+                <th>Desabilitado em</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="colaborador : ${colaboradores}">
+                <td th:text="${colaborador.id}"></td>
+                <td th:text="${colaborador.nome}"></td>
+                <td th:text="${colaborador.informaOAB()}"></td>
+                <td th:text="${colaborador.informaMatricula()}"></td>
+                <td th:text="${colaborador.informaCelular()}"></td>
+                <td th:text="${colaborador.informaTelefoneResidencial()}"></td>
+                <td th:text="${colaborador.informaSituacao()}"></td>
+                <td th:text ="${colaborador.getDataCriacaoIndex()}"></td>
+                <td th:text ="${colaborador.getDtExclusaoIndex()}"></td>
+
+                <td></td>
+                <td>
+                    <div class="btn-group pull-right">
+
+                        <a th:href="@{/colaborador/update/{id}(id=${colaborador.id})}" class="btn btn-primary btn-sm" title="Atualizar dados do colaborador">
+                            <i class="fa fa-pencil margin-r-5"></i></a>
+
+                        <a class="btn btn-danger btn-sm" th:href="@{/colaborador/delete/{id}(id=${colaborador.id})}" title=" Desativar colaborador">
+                            <i class="fa fa-trash-o margin-r-5"></i></a>
+
+                        <a class="btn btn-primary btn-sm"  th:href="@{/colaborador/reabilitar/{id}(id=${colaborador.id})}" title =" Reabilitar colaborador">
+                            <i class="fa fa-recycle margin-r-5" ></i></a>
+
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="box-footer">
+        <a class="btn btn-success btn-sm" th:href="@{/colaborador/create}"><i class="fa fa-user"></i>&nbsp; Novo Colaborador</a>
+    </div>
+</div>
+</body>
+</html>

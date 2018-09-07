@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- Default box -->
+<div th:fragment="content" th:class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Atualização de cadastro</h3>
+    </div>
+    <form
+          enctype="multipart/form-data"  th:action="@{/colaborador/update/{id}(id=${colaborador.id})}" th:method="POST">
+        <div class="box-body">
+
+            <div class="form-group col-md-4 col-sm-4"
+                 th:classappend="${#fields.hasErrors('colaborador.nome')} ? has-error">
+                <label>Nome</label>
+                <input th:field="*{colaborador.nome}" type="text" id="input_nome" onblur="valida_nome()" th:value="*{colaborador.nome}"
+                       class="form-control" maxlength="20"/>
+                <span th:class="help-block" th:if="${#fields.hasErrors('colaborador.nome')}"
+                      th:errors="*{colaborador.nome}"></span>
+            </div>
+
+            <div class="form-group col-md-4 col-sm-4"
+                 th:classappend="${#fields.hasErrors('colaborador.matricula')} ? has-error">
+                <label>Matrícula</label>
+                <input th:field="*{colaborador.matricula}" type="number" th:value="*{colaborador.matricula}"
+                       class="form-control" maxlength="20"/>
+                <span th:class="help-block" th:if="${#fields.hasErrors('colaborador.matricula')}"
+                      th:errors="*{colaborador.matricula}"></span>
+            </div>
+
+
+            <div class="form-group col-md-4 col-sm-4"
+                 th:classappend="${#fields.hasErrors('colaborador.telefone')} ? has-error">
+                <label>Telefone</label>
+                <input th:field="*{colaborador.telefone}" type="tel" th:value="*{colaborador.telefone}" class="form-control" max="9999999999" data-inputmask="'mask': '(99)9999-9999'"/>
+                <span th:class="help-block" th:if="${#fields.hasErrors('colaborador.telefone')}"
+                      th:errors="*{colaborador.telefone}"></span>
+            </div>
+            <div class="form-group col-md-4 col-sm-4"
+                 th:classappend="${#fields.hasErrors('colaborador.celular')} ? has-error">
+                <label>Celular</label>
+                <input th:field="*{colaborador.celular}" type="tel" th:value="*{colaborador.celular}" class="form-control" max="99999999999" data-inputmask="'mask': '(99) 9999[9]-9999'"/>
+                <span th:class="help-block" th:if="${#fields.hasErrors('colaborador.celular')}"
+                      th:errors="*{colaborador.celular}"></span>
+            </div>
+            <div class="form-group col-md-6 col-sm-6"
+                 th:classappend="${#fields.hasErrors('colaborador.oab')} ? has-error">
+                <label>OAB</label>
+                <input th:field="*{colaborador.oab}" type="text" th:value="*{colaborador.oab}"
+                       class="form-control" maxlength="10"/>
+                <span th:class="help-block" th:if="${#fields.hasErrors('colaborador.oab')}"
+                      th:errors="*{colaborador.oab}"></span>
+            </div>
+
+
+            <div class="form-group col-md-6 col-sm-6"
+                 th:classappend="${#fields.hasErrors('colaborador.carga_horaria')} ? has-error">
+                <label>Carga Horária Semanal</label>
+                <input th:field="*{colaborador.carga_horaria}" type="number"
+                       th:value="*{colaborador.carga_horaria}" class="form-control" min="1" max="60"/>
+                <span th:class="help-block" th:if="${#fields.hasErrors('colaborador.carga_horaria')}"
+                      th:errors="*{colaborador.carga_horaria}"></span>
+
+            </div>
+
+            <div class="form-group col-md-6 col-sm-6"
+                 th:classappend="${#fields.hasErrors('colaborador.setor')} ? has-error">
+                <label>Setor</label>
+                <select class="form-control" th:field="${colaborador.setor}" id="usuario-setor" required="">
+                    <option value="">Selecione um Setor</option>
+                    <option th:each="setor : ${setors}" th:value="${setor.id}"
+                            th:text="${setor.setor}"></option>
+                </select>
+                <span th:class="help-block" th:if="${#fields.hasErrors('colaborador.setor')}"
+                      th:errors="*{colaborador.setor}"></span>
+            </div>
+            <div class="form-group col-md-6 col-sm-6"
+                 th:classappend="${#fields.hasErrors('colaborador.tipoColaborador')} ? has-error">
+                <label>Tipo de Colaborador</label>
+                <select class="form-control" th:field="${colaborador.tipoColaborador}"
+                        id="usuario-tipoColaborador" required="">
+                    <option value="">Selecione um Tipo de Colaborador</option>
+                    <option th:each="tipoColaborador : ${tipoColaboradors}" th:value="${tipoColaborador.id}"
+                            th:text="${tipoColaborador.tipo}"></option>
+                </select>
+                <p></p>
+                <span th:class="help-block" th:if="${#fields.hasErrors('colaborador.tipoColaborador')}"
+                      th:errors="*{colaborador.tipoColaborador}"></span>
+            </div>
+
+            <!--Begin fields Endereco -->
+
+            <div class="form-group col-md-4 col-sm-4"
+                 th:classappend="${#fields.hasErrors('colaborador.endereco.cep')} ? has-error">
+                <label>CEP</label>
+                <input th:field="*{colaborador.endereco.cep}" type="text" th:value="*{colaborador.endereco.cep}"
+                       class="form-control" maxlength="9" data-inputmask="'mask':'99999-999','clearIncomplete': true"/>
+                <span th:class="help-block" th:if="${#fields.hasErrors('colaborador.endereco.cep')}"
+                      th:errors="*{colaborador.endereco.cep}"></span>
+            </div>
+            <div class="clearfix"></div>
+            <div class="form-group col-md-6 col-sm-6"
+                 th:classappend="${#fields.hasErrors('colaborador.endereco.logradouro')} ? has-error">
+                <label>Logradouro</label>
+                <input th:field="*{colaborador.endereco.logradouro}" type="text" th:value="*{colaborador.endereco.logradouro}"
+                       class="form-control" maxlength="50"/>
+                <span th:class="help-block" th:if="${#fields.hasErrors('colaborador.endereco.logradouro')}"
+                      th:errors="*{colaborador.endereco.logradouro}"></span>
+            </div>
+            <div class="form-group col-md-3 col-sm-3"
+                 th:classappend="${#fields.hasErrors('colaborador.endereco.numero')} ? has-error">
+                <label>Número</label>
+                <input th:field="*{colaborador.endereco.numero}" type="text" th:value="*{colaborador.endereco.numero}"
+                       class="form-control" maxlength="5"/>
+                <span th:class="help-block" th:if="${#fields.hasErrors('colaborador.endereco.numero')}"
+                      th:errors="*{colaborador.endereco.numero}"></span>
+            </div>
+            <div class="form-group col-md-3 col-sm-3"
+                 th:classappend="${#fields.hasErrors('colaborador.endereco.complemento')} ? has-error">
+                <label>Complemento</label>
+                <input th:field="*{colaborador.endereco.complemento}" type="text" th:value="*{colaborador.endereco.complemento}"
+                       class="form-control" maxlength="20"/>
+                <span th:class="help-block" th:if="${#fields.hasErrors('colaborador.endereco.complemento')}"
+                      th:errors="*{colaborador.endereco.complemento}"></span>
+            </div>
+
+            <div class="form-group col-md-4 col-sm-4"
+                 th:classappend="${#fields.hasErrors('colaborador.endereco.bairro')} ? has-error">
+                <label>Bairro</label>
+                <input th:field="*{colaborador.endereco.bairro}" type="text" th:value="*{colaborador.endereco.bairro}"
+                       class="form-control" maxlength="20"/>
+                <span th:class="help-block" th:if="${#fields.hasErrors('colaborador.endereco.bairro')}"
+                      th:errors="*{colaborador.endereco.bairro}"></span>
+            </div>
+            <div class="form-group col-md-4 col-sm-4">
+                <label>Estado</label>
+                <select class="form-control" id="usuario-estado_id" th:field="*{colaborador.endereco.cidade.estado.id}" required="">
+                    <option value="">Selecione um Estado</option>
+                    <option th:each="estado : ${estados}" th:value="${estado.id}"
+                            th:text="${estado}"></option>
+                </select>
+            </div>
+            <div class="form-group col-md-4 col-sm-4"
+                 th:classappend="${#fields.hasErrors('colaborador.endereco.cidade')} ? has-error">
+                <label>Cidade</label>
+                <select class="form-control" th:field="${colaborador.endereco.cidade.id}" id="usuario-cidade_id" th:attr="data-cidade_id=${colaborador.endereco.cidade.id}" required="">
+                    <option value="">Informe o Estado primeiro</option>
+                </select>
+            </div>
+        </div>
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a class="btn btn-default" th:href="@{/colaborador/index}">Voltar</a>
+        </div>
+
+    </form>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(":input").inputmask();
+            var urlToload = '/usuario/get-cidade/';
+
+            $('#usuario-estado_id').change(function () {
+                $.ajax({
+                    url: urlToload + $(this).children('option:selected').val(),
+                    method: 'GET',
+                    success: function (data) {
+                        $('#usuario-cidade_id').html(data);
+                    },
+                    complete: function (){
+                        $("#usuario-cidade_id > option").each(function(){
+                            if($(this).val() == $("#usuario-cidade_id").data('cidade_id')){
+                                $(this).attr("selected","selected");
+                            }
+                        });
+                    }
+                });
+            }).trigger('change');
+        });
+    </script>
+
+
+    <script>
+        function valida_nome() {
+            var filter_nome = /^([a-zA-Zà-úÀ-Ú]|\s+)+$/;
+            if (!filter_nome.test(document.getElementById("input_nome").value)) {
+                document.getElementById("input_nome").value = '';
+                document.getElementById("input_nome").placeholder = "Nome inválido";
+                document.getElementById("input_nome").style.borderColor = "#ff0000";
+                document.getElementById("input_nome").style.outline = "#ff0000";
+                document.getElementById("input_nome").focus();
+                document.getElementById("input_nome").onkeydown = function keydown_nome() {
+                    document.getElementById("input_nome").placeholder = "";
+                    document.getElementById("input_nome").style.borderColor = "#999999";
+                    document.getElementById("input_nome").style.outline = null;
+                }
+                return false;
+            } else {
+                // document.getElementById("input_nome").value = '';
+                // document.getElementById("input_nome").placeholder = "Nome Válido";
+            }
+            return true;
+        }
+
+    </script>
+</div>
+</body>
+</html>

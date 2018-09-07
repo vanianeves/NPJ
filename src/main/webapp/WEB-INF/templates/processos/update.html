@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- Default box -->
+<div th:fragment="content" th:class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Processos e Ações</h3>
+    </div>
+
+    <form enctype="multipart/form-data" th:object="${processo}" th:action="@{/processos/update/{id}(id=${processo.id})}"
+          th:method="POST">
+        <div class="box-body">
+
+            <div class="col-sm-8 form-group col-xs-8">
+                <label>Data</label>
+                <input th:field="*{data}"  th:value="*{data}" class="form-control" readonly="true"/>
+            </div>
+
+            <div class="col-sm-12 form-group col-xs-12">
+                <label>ID</label>
+                <input th:field="*{idAtendimento}"  th:value="*{idAtendimento}" readonly="true" class="form-control"/>
+            </div>
+
+            <div class="col-sm-2 form-group col-xs-2">
+                <label>Número do processo/Ação</label>
+                <input th:field="*{numeroProc}"  maxlength="150" th:value="*{numeroProc}" class="form-control"/>
+            </div>
+
+            <div class="col-sm-8 form-group col-xs-8">
+                <label>Vara</label>
+                <input th:field="*{vara}" type="text" maxlength="255" th:value="*{vara}" class="form-control"/>
+            </div>
+
+        </div>
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a class="btn btn-default" th:href="@{/atendimento/index}">Voltar</a>
+        </div>
+    </form>
+
+</div>
+</body>
+</html>

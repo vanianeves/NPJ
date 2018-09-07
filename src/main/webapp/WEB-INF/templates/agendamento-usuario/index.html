@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<div th:fragment="content" class="box box-primary">
+    <p style="text-align: center; color: crimson; font-weight: bold" th:text="${messages}"></p>
+        <div class="box-header with-border">
+
+            <div>
+                <ul  class="nav nav-pills">
+                    <li class="active">
+                        <a  href="#1a" data-toggle="tab">Agendados</a>
+                    </li>
+                    <li><a href="#2a" data-toggle="tab">Não Agendados</a>
+                    </li>
+
+                </ul>
+
+                <div class="tab-content clearfix">
+                    <div class="tab-pane active" id="1a">
+                        <div class="box-body no-padding">
+
+
+
+                           <table class="table table-stripped table-responsive table-hover" >
+                               <thead>
+                                    <tr>
+
+                                       <th>Data</th>
+                                        <th>Horário Início</th>
+                                        <th>Horário Fim</th>
+                                        <th>Dia da Semana</th>
+                                        <th>Cliente</th>
+                                       <th>Vara de Distribuição</th>
+                                       <th>Contato</th>
+                                       <th>Disciplina em Curso</th>
+                                        <th>Parfistas</th>
+                                       <th >Dupla</th>
+
+                                    </tr>
+                               </thead>
+                               <tbody>
+
+                                    <tr th:each="agendamento: ${agendamentos}" >
+
+                                        <td th:text="${agendamento.pre_atendimento.getDataFormatada()}"></td>
+                                        <td th:text="${agendamento.pre_atendimento.getHoraFormatada()}"></td>
+                                        <td th:text="${agendamento.pre_atendimento.getHoraFimFormatada()}"></td>
+                                        <td th:text="${agendamento.pre_atendimento.getDiaFormatado()}"></td>
+
+                                        <td th:text="${agendamento.pre_atendimento.cliente.nome}"></td>
+                                        <td th:text="${agendamento.pre_atendimento.demandaJuridica.demanda_juridica}"></td>
+                                        <td th:text="${agendamento.pre_atendimento.cliente.telResidencial}"></td>
+                                        <td th:text="${agendamento.disciplinaEmCurso}"></td>
+                                        <td th:text="${agendamento.getNomeParfistas()}"></td>
+                                        <td th:text="${agendamento.getNomeDupla()}"></td>
+
+                                        <td>
+                                            <div class="btn-group pull-right">
+
+                                                <!--<a th:href="@{/agendamento-usuario/update/{id}(id=${agendamento.id})}" class="btn btn-primary btn-sm">-->
+                                                    <!--<i class="fa fa-pencil margin-r-5"></i></a>-->
+
+
+                                                <a class="btn btn-danger btn-sm" th:href="@{/agendamento-usuario/delete/{id}(id=${agendamento.id})}">
+                                                    <i class="fa fa-trash-o margin-r-5"></i></a>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                               </tbody>
+
+                           </table>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="2a">
+                        <div class="box-body no-padding">
+
+                            <div class="box-tools pull-right">
+
+
+
+                            </div>
+
+                            <table class="table table-stripped table-responsive table-hover">
+                                <thead>
+                                <tr>
+
+                                    <th>Nome</th>
+                                    <th>Telefone de Contato</th>
+                                    <th>Data</th>
+                                    <th>Horário Início</th>
+                                    <th>Horário Término</th>
+                                    <th>Dia da Semana</th>
+                                    <th>Status</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="atendimento : ${preAtendimento}">
+
+                                    <td th:text="${atendimento.cliente.nome}"></td>
+                                    <td th:text="${atendimento.cliente.telResidencial}"></td>
+                                    <td th:text="${atendimento.getDataFormatada()}"></td>
+                                    <td th:text="${atendimento.getHoraFormatada()}"></td>
+                                    <td th:text="${atendimento.getHoraFimFormatada()}"></td>
+                                    <td th:text="${atendimento.getDiaFormatado()}"></td>
+                                    <td th:text="${atendimento.confirmacao}"></td>
+                                    <td>
+                                        <div class="btn-group pull-right">
+
+
+
+                                                <a th:href="@{/agendamento-usuario/create/{id}(id=${atendimento.id})}" class="btn btn-success btn-sm">
+                                                <i>Agendar</i></a>
+
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

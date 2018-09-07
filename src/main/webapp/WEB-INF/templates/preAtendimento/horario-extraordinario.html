@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<!-- Default box -->
+<div th:fragment="content" th:class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Cadastro de Horário Extraordinário</h3>
+    </div>
+
+    <form role="form" action="#" th:object="${preAtendimentoPost}" th:action="@{/preAtendimento/horario-extraordinario}" th:method="POST">
+        <div class="box-body">
+
+            <div class="form-group col-xs-3">
+                <br/>
+                <label>Dia do Atendimento</label>
+
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <input th:field="*{dataInicio}" type="date" class="form-control"/>
+                </div>
+            </div>
+
+            <div class="form-group col-xs-3">
+                <br/>
+                <label>Horário do Atendimento </label>
+
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                    <input th:field="*{horarioInicio}" type="time" class="form-control"/>
+                </div>
+            </div>
+
+            <!--<div class="form-group col-xs-3">
+                <br/>
+                <label>Data Final</label>
+
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <input th:field="*{dataFim}" type="date" class="form-control"/>
+                </div>
+            </div>-->
+
+
+            <div class="form-group col-xs-3">
+                <br/>
+                <label>Duração dos Atendimento </label>
+
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                    <input th:field="*{intervalo}" type="time" class="form-control"/>
+                </div>
+            </div>
+
+
+            <div class="form-group col-xs-3">
+                <br/>
+                <label>Semestre</label>
+
+                <div class="input-group">
+
+                    <input th:field="*{semestre}" type="text" class="form-control"/>
+                </div>
+            </div>
+
+
+
+          <!--  <div class="form-group col-xs-3">
+                <br/>
+                <label>Horário Fim </label>
+
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                    <input th:field="*{horarioFim}" type="time" class="form-control"/>
+                </div>
+            </div>-->
+
+            <div class="form-group col-xs-3">
+                <br/>
+                <label>Número de Atendimentos</label>
+
+                <div class="input-group">
+
+                    <input th:field="*{numAtend}" type="text" class="form-control"/>
+                </div>
+            </div>
+
+            <!--<div class="form-group col-xs-3">
+                <br/>
+                <label>Número de Atendimentos no Dia </label>
+
+                <div class="input-group">
+
+                    <input th:field="*{numAtendDia}" type="text" class="form-control"/>
+                </div>
+            </div>-->
+
+
+
+        </div>
+
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Criar</button>
+            <a class="btn btn-default" th:href="@{/preAtendimento/index}">Voltar</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

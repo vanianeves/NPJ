@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style type="text/css">
+        table {
+            border-collapse:collapse;
+            border:1px solid #CCC;
+        }
+
+        #table tr {
+            border:1px solid #CCC;
+        }
+
+        #table td {
+            width:40px;
+            height:40px;
+            padding:10px;
+            border:1px solid #CCC;
+        }
+    </style>
+</head>
+<body>
+<!-- Default box -->
+<div th:fragment="content" th:class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Visualização dos dados</h3>
+    </div>
+    <form role="form" action="#" th:action="@{/atendimento/view/{id}(id=${atendimento.id})}">
+        <div class="box-body">
+
+            <!--Begin fields Usuario-->
+
+            <div class="form-group col-md-4 col-sm-4">
+                <label>Data dos atendimento</label>
+                <input th:field="*{atendimento.dtAtendimento}" th:value="*{atendimento.dtAtendimento}"
+                       class="form-control" readonly="true"/>
+            </div>
+
+            <div class="form-group col-md-4 col-sm-4">
+                <label>Aluno 1</label>
+                <input th:field="*{atendimento.aluno1.nome}" th:value="*{atendimento.getAluno1().getNome()}"
+                       class="form-control" readonly="true"/>
+            </div>
+
+            <div class="form-group col-md-4 col-sm-4">
+                <label>Aluno 2</label>
+                <input th:field="*{atendimento.aluno2.nome}" th:value="*{atendimento.getAluno2().getNome()}"
+                       class="form-control" readonly="true"/>
+            </div>
+
+
+            <div class="form-group col-md-4 col-sm-4">
+                <label>Priemiro Parfista</label>
+                <input th:field="*{atendimento.parfista1.nome}" th:value="*{atendimento.getParfista1().getNome()}"
+                       class="form-control" readonly="true"/>
+            </div>
+
+            <div class="form-group col-md-4 col-sm-4">
+                <label>Segundso Parfista</label>
+                <input th:field="*{atendimento.parfista2.nome}" th:value="*{atendimento.getParfista2().getNome()}"
+                       class="form-control" readonly="true"/>
+            </div>
+
+
+            <div class="form-group col-md-4 col-sm-4">
+                <label>Bolsista de TP</label>
+                <input th:field="*{atendimento.bolsistaTP.nome}" th:value="*{atendimento.getBolsistaTP().getNome()}"
+                       class="form-control" readonly="true"/>
+            </div>
+
+
+
+            <div class="form-group col-md-4 col-sm-4">
+                <label>Professor Orientador</label>
+                <input th:field="*{atendimento.professorOrientador.nome}" th:value="*{atendimento.getProfessorOrientador().getNome()}"
+                       class="form-control" readonly="true"/>
+            </div>
+
+            <div class="form-group col-md-4 col-sm-4">
+                <label>Cliente</label>
+                <input th:field="*{atendimento.idce.nome}" th:value="*{atendimento.getIdce().getNome()}"
+                       class="form-control" readonly="true"/>
+            </div>
+
+
+            <div class="form-group col-md-4 col-sm-4">
+                <label>Responsável Legal</label>
+                <input th:field="*{atendimento.idResponsavelegal.nome}" th:value="*{atendimento.getIdResponsavelegal().getNome()}"
+                       class="form-control" readonly="true"/>
+            </div>
+
+
+            <div class="form-group col-md-4 col-sm-4">
+                <label>Parte contrária</label>
+                <input th:field="*{atendimento.parteContrariaId.nome}" th:value="*{atendimento.getParteContrariaId().getNome()}"
+                       class="form-control" readonly="true"/>
+            </div>
+
+            <div class="form-group col-md-4 col-sm-4"
+                 th:classappend="${#fields.hasErrors('atendimento.fatosIniciais')} ? has-error">
+                <label>Fatos Iniciais</label>
+                <input th:field="*{atendimento.fatosIniciais}" th:value="*{atendimento.fatosIniciais}"
+                       class="form-control" maxlength="200" readonly="true" />
+            </div>
+
+            <div class="form-group col-md-4 col-sm-4"
+                 th:classappend="${#fields.hasErrors('atendimento.dadosDemanda')} ? has-error">
+                <label>Dados demanda</label>
+                <input th:field="*{atendimento.dadosDemanda}" th:value="*{atendimento.dadosDemanda}"
+                       class="form-control" readonly="true"/>
+            </div>
+
+            <div class="form-group col-md-4 col-sm-4"
+                 th:classappend="${#fields.hasErrors('atendimento.documentos')} ? has-error">
+                <label>Documentos apresentados</label>
+                <input th:field="*{atendimento.documentos}" th:value="*{atendimento.documentos}"
+                       class="form-control" readonly="true"/>
+
+            </div>
+
+
+            <div class="form-group col-md-4 col-sm-4">
+                <label>Desdobramento dado ao atendimento</label>
+                <input th:field="*{atendimento.desdobramento.desdobramento}" th:value="*{atendimento.getDesdobramento().getDesdobramento()}"
+                       class="form-control" readonly="true"/>
+            </div>
+
+            <div class="form-group col-md-4 col-sm-4">
+                <label>Primeira testemunha</label>
+                <input th:field="*{atendimento.testemunha1.nome}" th:value="*{atendimento.getTestemunha1().getNome()}"
+                       class="form-control" readonly="true"/>
+            </div>
+
+
+            <div class="form-group col-md-4 col-sm-4">
+                <label>Segunda testemunha</label>
+                <input th:field="*{atendimento.testemunha2.nome}" th:value="*{atendimento.getTestemunha2().getNome()}"
+                       class="form-control" readonly="true"/>
+            </div>
+            <div class="form-group col-md-4 col-sm-4">
+                <label>Terceira testemunha</label>
+                <input th:field="*{atendimento.testemunha3.nome}" th:value="*{atendimento.getTestemunha3().getNome()}"
+                       class="form-control" readonly="true"/>
+            </div>
+
+        </div>
+        <label><h2><b>Andamentos adicionados ao atendimento (Históricos)</b></h2></label>
+        <table class="table table-stripped table-responsive table-hover">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Data</th>
+                <th>Descrição</th>
+                <th>Atesto do Parfista</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="historico:${historicos}">
+                <td th:text="${historico.id}"></td>
+                <td th:text="${historico.dtHistorico}"></td>
+                <td th:text="${historico.getDescricao()}"></td>
+                <td th:text="${historico.getAtestoParfista()}"></td>
+                <td>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <label><h2><b>Processos</b></h2></label>
+        <table class="table table-stripped table-responsive table-hover">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Número do processo</th>
+                <th>Vara</th>
+                <th>Data</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="processo:${processos}">
+                <td th:text="${processo.id}"></td>
+                <td th:text="${processo.getNumeroProc()}"></td>
+                <td th:text="${processo.getVara()}"></td>
+                <td th:text="${processo.getData()}"></td>
+                <td>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
+
+        <div class="box-footer">
+            <a class="btn btn-success" th:href="@{/atendimento/index}">Voltar</a>
+        </div>
+    </form>
+
+</div>
+</body>
+</html>

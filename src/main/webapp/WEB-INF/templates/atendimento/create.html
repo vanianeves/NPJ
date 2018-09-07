@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style type="text/css">
+        table {
+            border-collapse:collapse;
+            border:1px solid #CCC;
+        }
+
+        #table tr {
+            border:1px solid #CCC;
+        }
+
+        #table td {
+            width:40px;
+            height:40px;
+            padding:10px;
+            border:1px solid #CCC;
+        }
+    </style>
+</head>
+<body>
+<!-- Default box -->
+<div th:fragment="content" th:class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Atendimento contencioso</h3>
+    </div>
+    <form role="form" action="#" th:action="@{/atendimento/create}" th:method="POST">
+        <div class="box-body">
+
+            <!--Begin fields Usuario-->
+
+            <div class="form-group col-md-4 col-sm-4"
+                 >
+                <label>Data do atendimento</label>
+                <input th:field="*{atendimento.dtAtendimento}" th:value="*{atendimento.dtAtendimento}"
+                       class="form-control" readonly="true"/>
+
+            </div>
+
+            <div class="form-group col-md-6 col-sm-6"
+                 th:classappend="${#fields.hasErrors('atendimento.bolsistaTP.id')} ? has-error">
+                <label>Bolsista de TP</label>
+                <select class="form-control" maxlength="20" th:field="${atendimento.bolsistaTP.id}" REQUIRED="">
+                    <option value="">Selecione o bolsista de TP</option>
+                    <option th:each="bolsista: ${bolsistas}" th:value="${bolsista.id}"
+                            th:text="${bolsista.getNome()}"></option>
+                </select>
+                <span th:class="help-block" th:if="${#fields.hasErrors('atendimento.bolsistaTP.id')}"
+                      th:errors="*{atendimento.bolsistaTP.id}"></span>
+            </div>
+
+
+
+            <div class="form-group col-md-6 col-sm-6"
+                 th:classappend="${#fields.hasErrors('atendimento.professorOrientador.id')} ? has-error">
+                <label>Professor Orientador</label>
+                <select class="form-control" maxlength="20" th:field="${atendimento.professorOrientador.id}" REQUIRED="">
+                    <option value="">Selecione o professor orientador</option>
+                    <option th:each="professor: ${professores}" th:value="${professor.id}"
+                            th:text="${professor.getNome()}"></option>
+                </select>
+                <span th:class="help-block" th:if="${#fields.hasErrors('atendimento.professorOrientador.id')}"
+                      th:errors="*{atendimento.professorOrientador.id}"></span>
+            </div>
+
+            <div class="form-group col-md-6 col-sm-6"
+                 th:classappend="${#fields.hasErrors('atendimento.idce.id')} ? has-error">
+                <label>Cliente</label>
+                <select class="form-control" maxlength="20" th:field="${atendimento.idce.id}" REQUIRED="">
+                    <option value="">Selecione o professor orientador</option>
+                    <option th:each="cliente: ${clientes}" th:value="${cliente.id}"
+                            th:text="${cliente.getNome()}"></option>
+                </select>
+                <span th:class="help-block" th:if="${#fields.hasErrors('atendimento.idce.id')}"
+                      th:errors="*{atendimento.idce.id}"></span>
+            </div>
+
+
+            <div class="form-group col-md-6 col-sm-6"
+                 th:classappend="${#fields.hasErrors('atendimento.idResponsavelegal.id')} ? has-error">
+                <label>Responsável legal</label>
+                <select class="form-control" maxlength="20" th:field="${atendimento.idResponsavelegal.id}" REQUIRED="">
+                    <option value="">Selecione o responsável legal</option>
+                    <option th:each="cliente: ${clientes}" th:value="${cliente.id}"
+                            th:text="${cliente.getNome()}"></option>
+                </select>
+                <span th:class="help-block" th:if="${#fields.hasErrors('atendimento.idResponsavelegal.id')}"
+                      th:errors="*{atendimento.idResponsavelegal.id}"></span>
+            </div>
+
+
+
+            <div class="form-group col-md-4 col-sm-4"
+                 th:classappend="${#fields.hasErrors('atendimento.dadosDemanda')} ? has-error">
+                <label>Dados demanda</label>
+                <input th:field="*{atendimento.dadosDemanda}" th:value="*{atendimento.dadosDemanda}"
+                          class="form-control" />
+                <span th:class="help-block" th:if="${#fields.hasErrors('atendimento.dadosDemanda')}"
+                      th:errors="*{atendimento.dadosDemanda}"></span>
+            </div>
+
+            <div class="form-group col-md-4 col-sm-4"
+                 th:classappend="${#fields.hasErrors('atendimento.fatosIniciais')} ? has-error">
+                <label>Fatos Iniciais</label>
+                <textarea rows="4" th:field="${atendimento.fatosIniciais}" th:value="${atendimento.fatosIniciais}" th:class="form-control" maxlength="250">
+                        </textarea>
+                <span th:class="help-block" th:if="${#fields.hasErrors('atendimento.fatosIniciais')}"
+                      th:errors="*{atendimento.fatosIniciais}"></span>
+            </div>
+
+            <div class="form-group col-md-6 col-sm-6"
+                 th:classappend="${#fields.hasErrors('atendimento.desdobramento.id')} ? has-error">
+                <label>Desdobramento do atendimento</label>
+                <select class="form-control" maxlength="20" th:field="${atendimento.desdobramento.id}" REQUIRED="" th:align="center">
+                    <option value="">Selecione o desdobramento do atendimento</option>
+                    <option th:each="desdobramento: ${desdobramentos}" th:value="${desdobramento.id}"
+                            th:text="${desdobramento.getDesdobramento()}"> </option>
+                </select>
+                <span th:class="help-block" th:if="${#fields.hasErrors('atendimento.desdobramento.id')}"
+                      th:errors="*{atendimento.desdobramento.id}"></span>
+            </div>
+
+
+</div>
+        <br/>
+        <br/>
+
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Criar</button>
+
+            <a class="btn btn-default" th:href="@{/atendimento/index}">Voltar</a>
+        </div>
+    </form>
+
+
+
+
+</div>
+</body>
+</html>

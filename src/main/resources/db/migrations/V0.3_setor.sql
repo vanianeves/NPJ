@@ -1,0 +1,12 @@
+CREATE TABLE tipo_setor (
+  id SERIAL4 PRIMARY KEY,
+  setor VARCHAR(200) NOT NULL
+);
+
+ALTER SEQUENCE tipo_setor_id_seq RESTART WITH 1001;
+
+INSERT INTO tipo_setor VALUES
+  (1,'NEPCRIM'),
+  (2,'CONTENCIOSO'),
+  (3,'MEDIACAO');
+

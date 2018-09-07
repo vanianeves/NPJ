@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- Default box -->
+<div th:fragment="content" class="box box-primary">
+    <p style="text-align: center; color: crimson; font-weight: bold" th:text="${messages}"></p>
+    <div class="box-header with-border">
+        <h3 class="box-title">Cadastro de Pré-Atendimento</h3>
+
+        <div class="box-tools pull-right">
+            <a class="btn btn-success btn-sm" th:href="@{/preAtendimento/create/}"><i class="fa fa-users"></i>&nbsp; Gerar Novos Horários</a>
+            <a class="btn btn-warning btn-sm" th:href="@{/preAtendimento/horario-extraordinario/}"><i class="fa fa-users"></i>&nbsp; Gerar Horário Extraordinário</a>
+        </div>
+
+    </div>
+    <div class="box-body no-padding">
+        <table class="table table-stripped table-responsive table-hover">
+            <thead>
+            <tr>
+                <th colspan="2" style="text-align: center">Data/Dia Atendimento</th>
+                <th>Horário Início</th>
+                <th>Horário Término</th>
+                <th>Duração (Em minutos)</th>
+                <th>Semestre</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="atendimento : ${preAtendimento}">
+                <td th:text="${atendimento.getDataFormatada()}" ></td>
+                <td th:text="${atendimento.getDiaFormatado()}"></td>
+                <td th:text="${atendimento.getHoraFormatada()}"></td>
+                <td th:text="${atendimento.getHoraFimFormatada()}"></td>
+                <td th:text="${atendimento.duracaoAtendimento}"></td>
+                <td th:text="${atendimento.semestre}"></td>
+                <!--&lt;!&ndash;<td th:text="${atendimento.Dia da Semana}"></td>&ndash;&gt;-->
+                <td>
+                    <div class="btn-group pull-right">
+
+                        <!--<a th:href="@{/preAtendimento/update/{id}(id=${preAtendimento.id})}" class="btn btn-primary btn-sm">-->
+                            <!--<i class="fa fa-pencil margin-r-5"></i></a>-->
+
+
+                        <a class="btn btn-danger btn-sm" th:href="@{/preAtendimento/delete/{id}(id=${atendimento.id})}">
+                            <i class="fa fa-trash-o margin-r-5"></i></a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="box-footer">
+
+    </div>
+    <!-- /.box-footer-->
+</div   >
+
+</body>
+</html>

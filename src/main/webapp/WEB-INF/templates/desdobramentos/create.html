@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- Default box -->
+<div th:fragment="content" th:class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Cadastro de desdobramentos</h3>
+    </div>
+
+    <form role="form" action="#" th:object="${desdobramento}" th:action="@{/desdobramentos/create}" th:method="POST">
+        <div class="box-body">
+            <div class="col-sm-12 form-group col-xs-12">
+                <label>Desdobramento</label>
+                <input th:field="*{desdobramento}" type="text" th:value="*{desdobramento}" class="form-control"/>
+            </div>
+        </div>
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Criar</button>
+            <a class="btn btn-default" th:href="@{/desdobramentos/index}">Voltar</a>
+        </div>
+
+    </form>
+
+</div>
+</body>
+</html>

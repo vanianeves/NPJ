@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<aside th:fragment="sidebar" th:class="main-sidebar">
+    <section class="sidebar">
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">NAVEGAÇÃO PRINCIPAL</li>
+            <li class="treeview">
+                <!--<a href="#">-->
+                    <!--<i class="fa fa-edit"></i> <span>Cadastros</span>-->
+                    <!--<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>-->
+                <!--</a>-->
+                <!--<ul class="treeview-menu">-->
+                    <!--<li><a href="/usuario/index"><i class="fa fa-circle-o"></i> Usuários</a></li>-->
+                    <!--<li><a href="/cliente/index"><i class="fa fa-circle-o"></i> Clientes</a></li>-->
+                    <!--<li><a href="/demandaJuridica/index"><i class="fa fa-circle-o"></i>Vara de Distribuição</a></li>-->
+                    <!--<li><a href="/areaAtuacao/index"><i class="fa fa-circle-o"></i> Área de Atuação</a></li>-->
+                    <!--<li><a href="/setor/index"><i class="fa fa-circle-o"></i>Setor</a></li>-->
+                    <!--<li><a href="/disponibilidadeHorario/index"><i class="fa fa-circle-o"></i>Disponibilidade de Horário</a></li>-->
+                    <!--&lt;!&ndash;<li><a href="/listaEspera/index"><i class="fa fa-circle-o"></i>Lista de Espera</a></li>&ndash;&gt;-->
+                    <!--<li><a href="/projeto/index"><i class="fa fa-circle-o"></i> Projetos</a></li>-->
+                    <!--<li><a href="/parametrosDoSistema/index"><i class="fa fa-circle-o"></i> Parametros do Sistema</a></li>-->
+                    <!--<li><a href="/preAtendimento/index"><i class="fa fa-circle-o"></i> Pré Atendimento</a></li>-->
+                    <!--<li><a href="/tipoColaborador/index"><i class="fa fa-circle-o"></i> Tipos de colaborador</a></li>-->
+                    <!--<li><a href="/controleHorario/index"><i class="fa fa-circle-o"></i> Controle de horários</a></li>-->
+                    <!--<li><a href="/agendamento-usuario/index"><i class="fa fa-circle-o"></i> Agendamento de Usuário</a></li>-->
+                <!--</ul>-->
+                <a href="#">
+                    <i class="fa fa-edit"></i> <span>Recursos Humanos</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/colaborador/index"><i class="fa fa-circle-o"></i> Colaboradores</a></li>
+                    <li><a href="/disponibilidadeHorario/index"><i class="fa fa-circle-o"></i> Disponibilidade de Horário</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-edit"></i> <span>Projetos</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/projeto/index"><i class="fa fa-circle-o"></i> Visualizar Projetos</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-edit"></i> <span>Contencioso</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/cliente/index"><i class="fa fa-circle-o"></i> Clientes</a></li>
+                    <li><a href="/preAtendimento/index"><i class="fa fa-circle-o"></i> Pré Atendimento</a></li>
+                    <li><a href="/atendimento/index"><i class="fa fa-circle-o"></i> Atendimento</a></li>
+                    <li><a href="/agendamento-usuario/index"><i class="fa fa-circle-o"></i> Agendamento de Usuário</a></li>
+                    <li><a href="/controleHorario/index"><i class="fa fa-circle-o"></i> Agendamento de Clientes</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-edit"></i> <span>Administrador</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/tipoColaborador/index"><i class="fa fa-circle-o"></i> Tipos de colaborador</a></li>
+                    <li><a href="/parametrosDoSistema/index"><i class="fa fa-circle-o"></i> Parametros do Sistema</a></li>
+                    <li><a href="/demandaJuridica/index"><i class="fa fa-circle-o"></i> Demanda Jurídica</a></li>
+                    <li><a href="/desdobramentos/index"><i class="fa fa-circle-o"></i>Desdobramentos</a></li>
+                    <li><a href="/tipoSetor/index"><i class="fa fa-circle-o"></i>Setor</a></li>
+                </ul>
+            </li>
+
+            <li class="header">LABELS</li>
+            <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
+            <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
+            <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>
+</body>
+</html>

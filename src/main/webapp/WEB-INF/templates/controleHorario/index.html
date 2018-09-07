@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-Br">
+
+<script src="webjars/jquery/3.1.0/jquery.js"></script>
+
+<body>
+
+
+
+
+
+<div th:fragment="content" class="box box-primary">
+    <p style="text-align: center; color: crimson; font-weight: bold" th:text="${messages}"></p>
+    <div class="box-header with-border">
+
+        <div class="box-tools pull-right">
+
+            <a class="btn btn-warning btn-sm" th:href="@{/listaEspera/index/}"><i class="fa fa-users"></i>&nbsp;Lista de Espera</a>
+            <a class="btn btn-success btn-sm" th:href="@{/listaEspera/create/}"><i class="fa fa-users"></i>&nbsp; Adicionar na Lista de Espera</a>
+        </div>
+
+        <div>
+            <ul  class="nav nav-pills">
+                <li class="active">
+                    <a  href="#1a" data-toggle="tab">Agendados</a>
+                </li>
+                <li><a href="#2a" data-toggle="tab">Não Agendados</a>
+                </li>
+
+            </ul>
+
+            <div class="tab-content clearfix">
+                <div class="tab-pane active" id="1a">
+                    <div class="box-body no-padding">
+
+                        <table class="table table-stripped table-responsive table-hover" >
+                            <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Horário Início</th>
+                                <th>Horário Término</th>
+                                <th>Dia da Semana</th>
+                                <th>Semestre</th>
+                                <th>Cliente</th>
+                                <th>Contato</th>
+                                <th>Vara de Distribuição</th>
+                                <th>Situação</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="atendimento : ${atendimentos}">
+                                <td th:text="${atendimento.getDataFormatada()}"></td>
+                                <td th:text="${atendimento.getHoraFormatada()}"></td>
+                                <td th:text="${atendimento.getHoraFimFormatada()}"></td>
+                                <td th:text="${atendimento.getDiaFormatado()}"></td>
+                                <td th:text="${atendimento.semestre}"></td>
+                                <td th:text="${atendimento.cliente.nome}"></td>
+                                <td th:text="${atendimento.cliente.telCelular}"></td>
+                                <td th:text="${atendimento.demandaJuridica.demanda_juridica}"></td>
+                                <td th:text="${atendimento.confirmacao}"></td>
+                                <td>
+                                    <div class="btn-group pull-right">
+
+
+                                        <a  th:href="@{/controleHorario/confirmar/{id}(id=${atendimento.id})}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Confirmar">
+                                            <i class="fa fa-check margin-r-3"></i></a>
+
+
+                                       <a th:href="@{/controleHorario/recadastrar/{id}(id=${atendimento.id})}" onclick="listaEsperaConfirma(event)"
+                                          class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top"
+                                          title="Adicionar na lista de espera">
+                                            <i class="fa fa-users margin-r-3"></i></a>
+
+
+                                        <a th:href="@{/controleHorario/update/{id}(id=${atendimento.id})}"
+                                           class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Editar">
+                                            <i class="fa fa-pencil margin-r-3"></i></a>
+
+
+                                        <a class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Excluir" th:href="@{/controleHorario/delete/{id}(id=${atendimento.id})}">
+                                            <i class="fa fa-trash-o margin-r-3 " ></i></a>
+
+                                    </div>
+
+                                </td>
+                            </tr>
+                            </tbody>
+
+                        </table>
+                        <script>
+                            function listaEsperaConfirma(e) {
+                                console.log(e);
+                                var mensagem = confirm("O cliente será adicioonado na lista de espera.")
+                                if (!mensagem)
+                                    e.preventDefault();
+
+                            }
+
+                        </script>
+
+
+
+
+                    </div>
+                </div>
+                <div class="tab-pane" id="2a">
+                    <div class="box-body no-padding">
+
+
+                        <table class="table table-stripped table-responsive table-hover" >
+                            <thead>
+                            <tr>
+                                <th>Data </th>
+                                <th>Dia </th>
+                                <th>Horário Início</th>
+                                <th>Horário Término</th>
+                                <th>Semestre</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="controleHorarios : ${preAtendimeto}">
+                                <td th:text="${controleHorarios.getDataFormatada()}"></td>
+                                <td th:text="${controleHorarios.getDiaFormatado()}"></td>
+                                <td th:text="${controleHorarios.getHoraFormatada()}"></td>
+                                <td th:text="${controleHorarios.getHoraFimFormatada()}"></td>
+                                <td th:text="${controleHorarios.semestre}"></td>
+                                <!--<td th:text="${controleHorarios.preAtendimento.dataFinal}"></td>-->
+                                <td>
+                                    <div class="btn-group pull-right">
+
+
+
+                                        <a th:href="@{/controleHorario/create/{id}(id=${controleHorarios.id})}" class="btn btn-success btn-sm">
+                                            <i>Adicionar Cliente</i></a>
+
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

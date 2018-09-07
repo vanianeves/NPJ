@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<!-- Default box -->
+<div th:fragment="content" class="box box-primary">
+    <p style="text-align: center; color: crimson; font-weight: bold" th:text="${messages}"></p>
+    <div class="box-header with-border">
+        <h3 class="box-title">Atendimento Contencioso</h3>
+        <div class="box-tools pull-right">
+        </div>
+    </div>
+    <div class="box-body no-padding">
+        <table class="table table-stripped table-responsive table-hover">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Primeiro Aluno</th>
+                <th>Segundo Aluno</th>
+                <th>Professor responsável</th>
+                <th>Cliente</th>
+                <th>Parte contrária</th>
+                <th>Data do atendimento</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="atendimento : ${atendimentos}">
+                <td th:text="${atendimento.getId()}"></td>
+
+                <td th:text="${atendimento.getProfessorOrientador().getNome()}"></td>
+                <td th:text="${atendimento.idce.getNome()}"></td>
+
+                <td th:text="${atendimento.getDtAtendimento()}"></td>
+                <td>
+                    <div class="btn-group pull-right">
+
+                        <a class="btn btn-info btn-sm" th:href="@{/atendimento/view/{id}(id=${atendimento.id})}"  title="Visualizar os dados do atendimento">
+                            <i class="fa fa-eye margin-r-5"></i></a>
+
+                        <a th:href="@{/atendimento/update/{id}(id=${atendimento.id})}" class="btn btn-primary btn-sm"  title="Atualizar dados do atendimento" >
+                            <i class="fa fa-pencil margin-r-5"></i></a>
+                        <a class="btn btn-primary btn-sm" th:href="@{/historico/create/{id}(id=${atendimento.id})}" title="Adicionar um histórico ao atendimento">
+                            <i class="fa fa-plus margin-r-5 " ></i></a>
+                        <a class="btn btn-primary btn-sm" th:href="@{/historico/index/{id}(id=${atendimento.id})}" title ="Visualizar os históricos do atendimento">
+                            <i class="fa fa-history margin-r-5 " ></i></a>
+
+                        <a class="btn btn-success btn-sm" th:href="@{/processos/create/{id}(id=${atendimento.id})}" title ="Adicionar um processo ao atendimento">
+                            <i class="fa fa-plus margin-r-5 " ></i></a>
+                        <a class="btn btn-success btn-sm" th:href="@{/processos/index/{id}(id=${atendimento.id})}" title ="Visualizar os processos do atendimento">
+                            <i class="fa fa-product-hunt margin-r-5 c " ></i></a>
+
+                        <a class="btn btn-danger btn-sm" th:href="@{/atendimento/delete/{id}(id=${atendimento.id})}" title="Deletar atendimento. IRREVERSÍVEL!!!!">
+                            <i class="fa fa-trash-o margin-r-5"></i></a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="box-footer">
+        <a class="btn btn-success btn-sm" th:href="@{/atendimento/create/}"><i class="fa fa-user-o"></i>&nbsp; Novo atendimento</a>
+    </div>
+</div>
+</body>
+</html>

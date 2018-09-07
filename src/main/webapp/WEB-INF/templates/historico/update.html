@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- Default box -->
+<div th:fragment="content" th:class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Historicos</h3>
+    </div>
+
+    <form enctype="multipart/form-data" th:object="${historico}" th:action="@{/historico/update/{id}(id=${historico.id})}"
+          th:method="POST">
+        <div class="col-sm-12 form-group col-xs-12">
+            <label>Data</label>
+            <input th:field="*{dtHistorico}" type="text" th:value="*{dtHistorico}" readonly="true" class="form-control"/>
+        </div>
+
+        <div class="col-sm-12 form-group col-xs-12">
+            <label>ID</label>
+            <input th:field="*{idAtendimento}"  th:value="*{idAtendimento}" readonly="true" class="form-control"/>
+        </div>
+
+        <div class="col-sm-12 form-group col-xs-12">
+            <label>Descricao do Historico</label>
+            <input th:field="*{descricao}" type="text" th:value="*{descricao}" class="form-control"/>
+        </div>
+
+        <div class="col-sm-12 form-group col-xs-12">
+            <label>Atesto do Parfista</label>
+            <input th:field="*{atestoParfista}" type="text" th:value="*{atestoParfista}" class="form-control"/>
+        </div>
+
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a class="btn btn-default" th:href="@{/atendimento/index}">Voltar</a>
+        </div>
+
+    </form>
+
+</div>
+</body>
+</html>

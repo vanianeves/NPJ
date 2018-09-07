@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- Default box -->
+<div th:fragment="content" th:class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Cadastro de setores</h3>
+    </div>
+
+    <form role="form" action="#" th:object="${tipoSetor}" th:action="@{/tipoSetor/create}" th:method="POST">
+        <div class="box-body">
+            <div class="col-sm-12 form-group col-xs-12">
+                <label>Setor</label>
+                <input th:field="*{setor}" type="text" th:value="*{setor}" class="form-control"/>
+            </div>
+        </div>
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Criar</button>
+            <a class="btn btn-default" th:href="@{/tipoSetor/index}">Voltar</a>
+        </div>
+
+    </form>
+
+</div>
+</body>
+</html>

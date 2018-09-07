@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- Default box -->
+<div th:fragment="content" th:class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Andamentos do atendiemnto</h3>
+    </div>
+
+    <form role="form" action="#" th:object="${historico}" th:action="@{/historico/create}" th:method="POST">
+        <div class="box-body">
+            <div class="col-sm-2 form-group col-xs-2">
+                <label>Data</label>
+                <input th:field="*{dtHistorico}" type="text" maxlength="10" th:value="*{dtHistorico}" class="form-control" readonly="true"/>
+            </div>
+            <div class="col-sm-8 form-group col-xs-8">
+                <label>Descrição a ser adicionada ao histórico do Atendimento</label>
+                <input th:field="*{descricao}" type="text" maxlength="255" th:value="*{descricao}" class="form-control"/>
+            </div>
+
+            <div class="col-sm-8form-group col-xs-8">
+                <label>Atesto do Parefista </label>
+                <input th:field="*{atestoParfista}" type="text" maxlength="255" th:value="*{atestoParfista}" class="form-control"/>
+            </div>
+        </div>
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Adicionar</button>
+            <a class="btn btn-default" th:href="@{/atendimento/index}">Voltar</a>
+        </div>
+    </form>
+
+</div>
+</body>
+</html>

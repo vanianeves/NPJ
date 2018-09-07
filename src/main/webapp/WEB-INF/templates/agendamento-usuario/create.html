@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<div th:fragment="content" class="box box-primary">
+    <div class="box-header with-border">
+        <h3>Agendamento Usuário</h3>
+    </div>
+        <form enctype="multipart/form-data" th:object="${agendamento}" th:action="@{/agendamento-usuario/create/{id}(id=${atendimento.id})}"
+          th:method="POST">
+
+            <div class="box-body">
+
+                <div class="col-md-3" >
+                    <label>Nome do Cliente</label>
+                    <p th:text="${atendimento.cliente.nome}" style=" background-color: lightgrey;padding: 5px ;border: solid 1px darkgrey"></p>
+                    <input class="hidden" th:value="${agendamento.pre_atendimento}" th:field="${atendimento.id}"/>
+
+
+                </div>
+
+                <div class="col-md-3" >
+                    <label>Data do Atendimento</label>
+                    <p th:text="${atendimento.getDataFormatada()}" style=" background-color: lightgrey;padding: 5px ;border: solid 1px darkgrey"></p>
+
+
+
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label>Hora do Atendimento</label>
+                    <p th:text="${atendimento.getHoraFormatada()}" style=" background-color: lightgrey;padding: 5px ;border: solid 1px darkgrey"></p>
+
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Dia do Atendimento</label>
+                    <p th:text="${atendimento.getDiaFormatado()}" style=" background-color: lightgrey;padding: 5px ;border: solid 1px darkgrey"></p>
+                </div>
+
+                <div style="text-align: center" class="form-group col-md-12 col-sm-12">
+                    <label >Usuários</label>
+
+
+                    <div class="row">
+                        <br/>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <select class="form-control " name="usuario-1-id" id="usuario-1-id" th:field="${agendamento.aluno1.id}">
+                                <option value="">Selecione o Aluno(a)</option>
+                                <option th:each="aluno : ${alunos}" th:value="${aluno.id}"
+                                        th:text="${aluno.nome}"></option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-6 col-sm-6">
+
+                            <select class="form-control " name="usuario-2-id" id="usuario-2-id" th:field="${agendamento.aluno2.id}">
+                                <option value="">Selecione o Aluno(a)</option>
+                                <option th:each="aluno : ${alunos}" th:value="${aluno.id}"
+                                        th:text="${aluno.nome}"></option>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+
+
+                <div style="text-align: center" class="form-group col-md-12 col-sm-12">
+                    <br/>
+                    <label >Parfistas</label>
+
+
+                    <div class="row">
+                        <br/>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <select class="form-control " name="parfista-1-id" id="parfista-1-id" th:field="${agendamento.parfista1.id}">
+                                <option value="">Selecione o Parfista</option>
+                                <option th:each="parfista : ${parfistas}" th:value="${parfista.id}"
+                                        th:text="${parfista.nome}"></option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <select class="form-control " name="parfista-2-id" id="parfista-2-id" th:field="${agendamento.parfista2.id}">
+                                <option value="">Selecione o Parfista</option>
+                                <option th:each="parfista : ${parfistas}" th:value="${parfista.id}"
+                                        th:text="${parfista.nome}"></option>
+                            </select>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <div class="form-group col-md-12 col-sm-12"  >
+                    <br/>
+                    <label>Disciplina em Curso</label>
+                    <input name="required"  type="text" th:field="${agendamento.disciplinaEmCurso}" class="form-control"/>
+                </div>
+
+
+
+            </div>
+
+
+
+
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Salvar Agendamento</button>
+                <a class="btn btn-default" th:href="@{/agendamento-usuario/index}">Voltar</a>
+            </div>
+
+        </form>
+</div>
+
+</body>
+</html>

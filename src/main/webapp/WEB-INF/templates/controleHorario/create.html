@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- Default box -->
+<div th:fragment="content" th:class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Agendamento de Cliente</h3>
+
+    </div>
+
+    <form enctype="multipart/form-data" th:object="${agendamento}" th:action="@{/controleHorario/create/{id}(id=${atendimento.id})}"
+          th:method="POST">
+        <div class="box-body">
+
+            <div class="col-md-3" >
+                <label>Data do Atendimento</label>
+                <p th:text="${atendimento.getDataFormatada()}" style=" background-color: lightgrey;padding: 5px ;border: solid 1px darkgrey"></p>
+
+            </div>
+
+            <div class="form-group col-md-3">
+                <label>Hora do Atendimento</label>
+                <p th:text="${atendimento.getHoraFormatada()}" style=" background-color: lightgrey;padding: 5px ;border: solid 1px darkgrey"></p>
+
+            </div>
+            <div class="form-group col-md-3">
+                <label>Dia do Atendimento</label>
+                <p th:text="${atendimento.getDiaFormatado()}" style=" background-color: lightgrey;padding: 5px ;border: solid 1px darkgrey"></p>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Semestre</label>
+                <input class="form-control" style=" background-color: lightgrey;padding: 5px ;border: solid 1px darkgrey" readonly="true" type="text" th:value="${atendimento.semestre}" th:field="${atendimento.semestre}"  />
+
+            </div>
+
+            <div class="form-group col-md-3">
+                <label>Duração Atendimento (Em minutos)</label>
+                <input class="form-control" style=" background-color: lightgrey;padding: 5px ;border: solid 1px darkgrey" readonly="true" type="text" th:value="${atendimento.duracaoAtendimento}" th:field="${atendimento.duracaoAtendimento}"  />
+
+            </div>
+
+            <div>
+                <div class="form-group col-md-4 col-sm-4">
+                    <label>Cliente</label>
+                    <select class="form-control " name="cliente_id" id="cliente_id" th:field="${atendimento.cliente.id}">
+                        <option value="">Selecione o Cliente</option>
+                        <option th:each="cliente : ${clientes}" th:value="${cliente.id}"
+                                th:text="${cliente.nome}"></option>
+                    </select>
+
+                </div>
+                <div class="form-group col-md-4 col-sm-4">
+                    <label>Vara de Distribuição</label>
+                    <select class="form-control " name="demanda_id" id="demanda_id" th:field="${atendimento.demandaJuridica.id}">
+                        <option value="">Selecione a Vara de Distribuição</option>
+                        <option th:each="demanda: ${demanda}" th:value="${demanda.id}"
+                                th:text="${demanda.demanda}"></option>
+                    </select>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a class="btn btn-default" th:href="@{/controleHorario/index}">Voltar</a>
+        </div>
+    </form>
+
+</div>
+</body>
+</html>

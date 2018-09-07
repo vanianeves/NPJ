@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- Default box -->
+<div th:fragment="content" th:class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Setores</h3>
+    </div>
+
+    <form enctype="multipart/form-data" th:object="${tipoSetor}" th:action="@{/tipoSetor/update/{id}(id=${tipoSetor.id})}"
+          th:method="POST">
+        <div class="col-sm-12 form-group col-xs-12">
+            <label>setor</label>
+            <input th:field="*{setor}" type="text" th:value="*{setor}" class="form-control"/>
+
+        </div>
+
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a class="btn btn-default" th:href="@{/tipoSetor/index}">Voltar</a>
+        </div>
+
+    </form>
+
+</div>
+</body>
+</html>

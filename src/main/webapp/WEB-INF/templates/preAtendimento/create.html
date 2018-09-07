@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<!-- Default box -->
+<div th:fragment="content" th:class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Cadastro de Pré-Atendimento</h3>
+    </div>
+
+    <form role="form" action="#" th:object="${preAtendimentoPost}" th:action="@{/preAtendimento/create}"
+          th:method="POST">
+        <div class="box-body">
+
+            <div class="form-group col-xs-3">
+                <br/>
+                <label>Data Inicio</label>
+
+                <div class="input-group" th:classappend="${#fields.hasErrors('dataInicio')} ? has-error">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <input th:field="*{dataInicio}" type="date" class="form-control"/>
+                    <span th:class="help-block" th:if="${#fields.hasErrors('dataInicio')}" th:errors="*{dataInicio}"></span>
+                </div>
+            </div>
+
+            <div class="form-group col-xs-3">
+                <br/>
+                <label>Data Final</label>
+
+                <div class="input-group" th:classappend="${#fields.hasErrors('dataFim')} ? has-error">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <input th:field="*{dataFim}" type="date" class="form-control"/>
+                    <span th:class="help-block" th:if="${#fields.hasErrors('dataFim')}" th:errors="*{dataFim}"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group col-xs-3">
+                <br/>
+                <label>Duração dos Atendimento </label>
+
+                <div class="input-group" th:classappend="${#fields.hasErrors('intervalo')} ? has-error">
+                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                    <input th:field="*{intervalo}" type="time" class="form-control"/>
+                    <span th:class="help-block" th:if="${#fields.hasErrors('intervalo')}" th:errors="*{intervalo}"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group col-xs-3">
+                <br/>
+                <label>Semestre</label>
+
+                <div class="input-group" th:classappend="${#fields.hasErrors('semestre')} ? has-error">
+
+                    <input th:field="*{semestre}" type="text" class="form-control"/>
+                    <span th:class="help-block" th:if="${#fields.hasErrors('semestre')}" th:errors="*{semestre}"></span>
+                </div>
+            </div>
+
+            <div class="form-group col-xs-3">
+                <br/>
+                <label>Horário Início </label>
+
+                <div class="input-group" th:classappend="${#fields.hasErrors('horarioInicio')} ? has-error">
+                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                    <input th:field="*{horarioInicio}" type="time" class="form-control"/>
+                    <span th:class="help-block" th:if="${#fields.hasErrors('horarioInicio')}" th:errors="*{horarioInicio}"></span>
+                </div>
+            </div>
+
+            <div class="form-group col-xs-3">
+                <br/>
+                <label>Horário Fim </label>
+
+                <div class="input-group" th:classappend="${#fields.hasErrors('horarioFim')} ? has-error">
+                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                    <input th:field="*{horarioFim}" type="time" class="form-control"/>
+                    <span th:class="help-block" th:if="${#fields.hasErrors('horarioFim')}" th:errors="*{horarioFim}"></span>
+                </div>
+            </div>
+
+            <div class="form-group col-xs-3">
+                <br/>
+                <label>Número de Atendimentos</label>
+
+                <div class="input-group" th:classappend="${#fields.hasErrors('numAtend')} ? has-error">
+
+                    <input th:field="*{numAtend}" type="number" class="form-control"/>
+                    <span th:class="help-block" th:if="${#fields.hasErrors('numAtend')}" th:errors="*{numAtend}"></span>
+                </div>
+            </div>
+
+            <div class="form-group col-xs-3">
+                <br/>
+                <label>Número de Atendimentos no Dia </label>
+
+                <div class="input-group" th:classappend="${#fields.hasErrors('numAtendDia')} ? has-error">
+
+
+                    <input th:field="*{numAtendDia}" type="number" class="form-control"/>
+                    <span th:class="help-block" th:if="${#fields.hasErrors('numAtendDia')}" th:errors="*{numAtendDia}"></span>
+                </div>
+            </div>
+
+            <div style="text-align: left " class="col-xs-12">
+                <br/>
+                <label>Escolha os dias que serão gerados:</label>
+            </div>
+
+
+            <div class="form-check col-xs-2">
+                <input th:value="2" th:field="*{checkBoxValues}" class="form-check-input" type="checkbox"
+                       th:text="Segunda-Feira" style="vertical-align: middle; margin: 0 4px 0 0"/>
+            </div>
+            <div class="form-check col-xs-2">
+                <input th:value="3" th:field="*{checkBoxValues}" class="form-check-input" type="checkbox"
+                       th:text="Terça-Feira" style="vertical-align: middle; margin: 0 4px 0 0"/>
+            </div>
+            <div class="form-check col-xs-2">
+                <input th:value="4" th:field="*{checkBoxValues}" class="form-check-input" type="checkbox"
+                       th:text="Quarta-Feira" style="vertical-align: middle; margin: 0 4px 0 0"/>
+            </div>
+            <div class="form-check col-xs-2">
+                <input th:value="5" th:field="*{checkBoxValues}" class="form-check-input" type="checkbox"
+                       th:text="Quinta-Feira" style="vertical-align: middle; margin: 0 4px 0 0"/>
+            </div>
+            <div class="form-check col-xs-2">
+                <input th:value="6" th:field="*{checkBoxValues}" class="form-check-input" type="checkbox"
+                       th:text="Sexta-Feira" style="vertical-align: middle; margin: 0 4px 0 0"/>
+            </div>
+
+
+        </div>
+
+
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Criar</button>
+            <a class="btn btn-default" th:href="@{/preAtendimento/index}">Voltar</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>
