@@ -190,6 +190,42 @@
                       th:errors="*{atendimento.desdobramento.id}"></span>
             </div>
 
+            <div class="form-group col-md-6 col-sm-6"
+                 th:classappend="${#fields.hasErrors('atendimento.testemunha1.id')} ? has-error">
+                <label>Primeira testemunha</label>
+                <select class="form-control" maxlength="20" th:field="${atendimento.testemunha1.id}" REQUIRED="">
+                    <option value="">Selecione a primeira pessoa </option>
+                    <option th:each="cliente: ${clientes}" th:value="${cliente.id}"
+                            th:text="${cliente.getNome()}"></option>
+                </select>
+                <span th:class="help-block" th:if="${#fields.hasErrors('atendimento.testemunha1.id')}"
+                      th:errors="*{atendimento.testemunha1.id}"></span>
+            </div>
+
+
+            <div class="form-group col-md-6 col-sm-6"
+                 th:classappend="${#fields.hasErrors('atendimento.testemunha2.id')} ? has-error">
+                <label>Segunda testemunha</label>
+                <select class="form-control" maxlength="20" th:field="${atendimento.testemunha2.id}" REQUIRED="">
+                    <option value="">Selecione a segunda pessoa</option>
+                    <option th:each="cliente: ${clientes}" th:value="${cliente.id}"
+                            th:text="${cliente.getNome()}"></option>
+                </select>
+                <span th:class="help-block" th:if="${#fields.hasErrors('atendimento.testemunha2.id')}"
+                      th:errors="*{atendimento.testemunha2.id}"></span>
+            </div>
+
+            <div class="form-group col-md-6 col-sm-6"
+                 th:classappend="${#fields.hasErrors('atendimento.testemunha3.id')} ? has-error">
+                <label>Terceira testemunha</label>
+                <select class="form-control" maxlength="20" th:field="${atendimento.testemunha3.id}" REQUIRED="">
+                    <option value="">Selecione a terceira pessoa</option>
+                    <option th:each="cliente: ${clientes}" th:value="${cliente.id}"
+                            th:text="${cliente.getNome()}"></option>
+                </select>
+                <span th:class="help-block" th:if="${#fields.hasErrors('atendimento.testemunha3.id')}"
+                      th:errors="*{atendimento.testemunha3.id}"></span>
+            </div>
 
         </div>
 
@@ -199,6 +235,9 @@
             <a class="btn btn-default" th:href="@{/atendimento/index}">Voltar</a>
         </div>
     </form>
+
+
+
 
 </div>
 </body>

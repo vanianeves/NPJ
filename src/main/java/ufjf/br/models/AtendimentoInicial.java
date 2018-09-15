@@ -16,19 +16,43 @@ public class AtendimentoInicial {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+
     @Column(name= "dt_atendimento")
     private String dtAtendimento;
+
+    @Column(name= "dt_atendimento_testemunhas")
+    private Timestamp dtAtendimentoTestemunhas;
+
+    @OneToOne
+    @JoinColumn(name = "aluno1_id")
+    @NotNull(message ="selecone o primeiro aluno")
+    private Colaborador aluno1;
+
+    @OneToOne
+    @JoinColumn(name = "aluno2_id")
+    @NotNull(message ="selecone o segundo aluno")
+    private Colaborador  aluno2;
+
+    @OneToOne
+    @JoinColumn(name = "parfista1_id")
+    @NotNull(message ="selecone o primeiro parfista")
+    private Colaborador parfista1;
+
+    @OneToOne
+    @JoinColumn(name = "parfista2_id")
+    @NotNull(message ="selecone o segundo parfista")
+    private Colaborador  parfista2;
 
     @OneToOne
     @JoinColumn(name = "bolsistaTP_id")
     @NotNull(message ="selecone um bolsista de TP")
     private Colaborador  bolsistaTP;
 
-
     @OneToOne
     @JoinColumn(name = "professorOrientador_id")
     @NotNull(message ="selecone o professor responsável")
     private Colaborador  professorOrientador;
+
 
     @Column(name="dados_Demanda")
     private String dadosDemanda;
@@ -40,7 +64,14 @@ public class AtendimentoInicial {
 
     @OneToOne
     @JoinColumn(name="id_responsavel_legal")
+    @NotNull(message = "Selecione um responsável, caso necessário")
     private Cliente idResponsavelegal;
+
+    @OneToOne
+    @JoinColumn(name="parteContraria_id")
+    @NotNull(message = "Selecione a parte contrária")
+    private Cliente ParteContrariaId;
+
 
     @OneToOne
     @JoinColumn(name="desdobramento_id")
@@ -68,6 +99,22 @@ public class AtendimentoInicial {
     public void setDocumentos(String documentos) {
         this.documentos = documentos;
     }
+
+    @OneToOne
+    @JoinColumn(name="testemunha1_id")
+    @NotNull(message = "Selecione a primeira testemunha")
+    private Cliente testemunha1;
+
+
+    @OneToOne
+    @JoinColumn(name="testemunha2_id")
+    @NotNull(message = "Selecione a segunda testemunha")
+    private Cliente testemunha2;
+
+    @OneToOne
+    @JoinColumn(name="testemunha3_id")
+    @NotNull(message = "Selecione a terceira testemunha")
+    private Cliente testemunha3;
 
     @Column(name="numeroProcessoVara")
     private int numeroProcesso;
@@ -104,6 +151,8 @@ public class AtendimentoInicial {
 
   }
 
+
+
     public int getHistoricoId() {
         return historicoId;
     }
@@ -128,6 +177,29 @@ public class AtendimentoInicial {
         this.vara = vara;
     }
 
+    public Cliente getTestemunha3() {
+        return testemunha3;
+    }
+
+    public void setTestemunha3(Cliente testemunha3) {
+        this.testemunha3 = testemunha3;
+    }
+
+    public Cliente getTestemunha2() {
+        return testemunha2;
+    }
+
+    public void setTestemunha2(Cliente testemunha2) {
+        this.testemunha2 = testemunha2;
+    }
+
+    public Cliente getTestemunha1() {
+        return testemunha1;
+    }
+
+    public void setTestemunha1(Cliente testemunha1) {
+        this.testemunha1 = testemunha1;
+    }
 
     public Desdobramentos getDesdobramento() {
         return desdobramento;
@@ -169,6 +241,14 @@ public class AtendimentoInicial {
         this.idResponsavelegal = idResponsavelegal;
     }
 
+    public Cliente getParteContrariaId() {
+        return ParteContrariaId;
+    }
+
+    public void setParteContrariaId(Cliente parteContrariaId) {
+        ParteContrariaId = parteContrariaId;
+    }
+
     public String getFatosIniciais() {
         return fatosIniciais;
     }
@@ -185,6 +265,46 @@ public class AtendimentoInicial {
         this.idContencioso = idContencioso;
     }
 
+
+    public Timestamp getDtAtendimentoTestemunhas() {
+        return dtAtendimentoTestemunhas;
+    }
+
+    public void setDtAtendimentoTestemunhas(Timestamp dtAtendimentoTestemunhas) {
+        this.dtAtendimentoTestemunhas = dtAtendimentoTestemunhas;
+    }
+
+    public Colaborador getAluno1() {
+        return aluno1;
+    }
+
+    public void setAluno1(Colaborador aluno1) {
+        this.aluno1 = aluno1;
+    }
+
+    public Colaborador getAluno2() {
+        return aluno2;
+    }
+
+    public void setAluno2(Colaborador aluno2) {
+        this.aluno2 = aluno2;
+    }
+
+    public Colaborador getParfista1() {
+        return parfista1;
+    }
+
+    public void setParfista1(Colaborador parfista1) {
+        this.parfista1 = parfista1;
+    }
+
+    public Colaborador getParfista2() {
+        return parfista2;
+    }
+
+    public void setParfista2(Colaborador parfista2) {
+        this.parfista2 = parfista2;
+    }
 
     public Colaborador getBolsistaTP() {
         return bolsistaTP;

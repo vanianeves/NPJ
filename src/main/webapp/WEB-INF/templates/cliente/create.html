@@ -9,7 +9,7 @@
                 <div class="box-body">
                     <div class="form-group col-xs-12" th:classappend="${#fields.hasErrors('nome')} ? has-error">
                         <label>Nome</label>
-                        <input th:field="*{nome}" id="input_nome" onblur="valida_nome()" type="text" th:value="*{nome}" class="form-control" maxlength="50" data-th-accept-charset="UTF-8"/>
+                        <input th:field="*{nome}" type="text" th:value="*{nome}" class="form-control" maxlength="50"/>
                         <span th:class="help-block" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
                     </div>
 
@@ -26,7 +26,7 @@
                     <div class="form-group col-md-3 col-sm-3"
                          th:classappend="${#fields.hasErrors('endereco.numero')} ? has-error">
                         <label>Número</label>
-                        <input th:field="*{endereco.numero}" type="number" th:value="*{endereco.numero}"
+                        <input th:field="*{endereco.numero}" type="text" th:value="*{endereco.numero}"
                                class="form-control" maxlength="5"/>
                         <span th:class="help-block" th:if="${#fields.hasErrors('endereco.numero')}"
                               th:errors="*{endereco.numero}"></span>
@@ -97,29 +97,29 @@
 
                     <div class="form-group col-xs-6" th:classappend="${#fields.hasErrors('nomeMae')} ? has-error">
                         <label>Nome Mãe</label>
-                        <input th:field="${cliente.nomeMae}" id="input_nome2" onblur="valida_nomeMae()" type="text" th:value="${cliente.nomeMae}" th:class="form-control" maxlength="50"/>
+                        <input th:field="${cliente.nomeMae}" type="text" th:value="${cliente.nomeMae}" th:class="form-control" maxlength="50"/>
                         <span th:class="help-block" th:if="${#fields.hasErrors('nomeMae')}" th:errors="*{nomeMae}"></span>
                     </div>
                     <div class="form-group col-xs-6" th:classappend="${#fields.hasErrors('nomePai')} ? has-error">
                         <label>Nome Pai</label>
-                        <input th:field="${cliente.nomePai}" id="input_nome3" onblur="valida_nomePai()" type="text" th:value="${cliente.nomePai}" th:class="form-control" maxlength="50"/>
+                        <input th:field="${cliente.nomePai}" type="text" th:value="${cliente.nomePai}" th:class="form-control" maxlength="50"/>
                         <span th:class="help-block" th:if="${#fields.hasErrors('nomePai')}" th:errors="*{nomePai}"></span>
                     </div>
                     <div class="form-group col-xs-3" th:classappend="${#fields.hasErrors('profissao')} ? has-error">
                         <label>Profissão</label>
-                        <input th:field="${cliente.profissao}" onblur="valida_profissao()" type="text" id="profissao" th:value="${cliente.profissao}"
+                        <input th:field="${cliente.profissao}" type="text" id="profissao" th:value="${cliente.profissao}"
                                th:class="form-control" maxlength="20"/>
                         <span th:class="help-block" th:if="${#fields.hasErrors('profissao')}" th:errors="*{profissao}"></span>
                     </div>
                     <div class="form-group col-xs-3" th:classappend="${#fields.hasErrors('estadoCivil')} ? has-error">
                         <label>Estado Civil</label>
-                        <input th:field="${cliente.estadoCivil}" onblur="valida_estadoCivil()" type="text" id="estadoCivil" th:value="${cliente.estadoCivil}"
+                        <input th:field="${cliente.estadoCivil}" type="text" id="estadoCivil" th:value="${cliente.estadoCivil}"
                                th:class="form-control" maxlength="20"/>
                         <span th:class="help-block" th:if="${#fields.hasErrors('estadoCivil')}" th:errors="*{estadoCivil}"></span>
                     </div>
                     <div class="form-group col-xs-3" th:classappend="${#fields.hasErrors('nacionalidade')} ? has-error">
                         <label>Nacionalidade</label>
-                        <input th:field="${cliente.nacionalidade}" onblur="valida_nacionalidade()" type="text" id="nacionalidade" th:value="${cliente.nacionalidade}"
+                        <input th:field="${cliente.nacionalidade}" type="text" id="nacionalidade" th:value="${cliente.nacionalidade}"
                                th:class="form-control" maxlength="20"/>
                         <span th:class="help-block" th:if="${#fields.hasErrors('nacionalidade')}" th:errors="*{nacionalidade}"></span>
                     </div>
@@ -194,140 +194,6 @@
                     $("#telefone").inputmask("(99)9999-9999",{ "clearIncomplete": true });
                     $("#celular").inputmask("(99)99999-9999",{ "clearIncomplete": true });
                 });
-            </script>
-
-            <script>
-                function valida_nome() {
-                    var filter_nome = /^([a-zA-Zà-úÀ-Ú]|\s+)+$/;
-                    if (!filter_nome.test(document.getElementById("input_nome").value)) {
-                        document.getElementById("input_nome").value = '';
-                        document.getElementById("input_nome").placeholder = "Nome inválido";
-                        document.getElementById("input_nome").style.borderColor = "#ff0000";
-                        document.getElementById("input_nome").style.outline = "#ff0000";
-                        document.getElementById("input_nome").focus();
-                        document.getElementById("input_nome").onkeydown = function keydown_nome() {
-                            document.getElementById("input_nome").placeholder = "";
-                            document.getElementById("input_nome").style.borderColor = "#999999";
-                            document.getElementById("input_nome").style.outline = null;
-                        }
-                        return false;
-                    } else {
-                        // document.getElementById("input_nome").value = '';
-                        // document.getElementById("input_nome").placeholder = "Nome Válido";
-                    }
-                    return true;
-                }
-
-            </script>
-
-            <script>
-                function valida_nomeMae() {
-                    var filter_nome = /^([a-zA-Zà-úÀ-Ú]|\s+)+$/;
-                    if (!filter_nome.test(document.getElementById("input_nome2").value)) {
-                        document.getElementById("input_nome2").value = '';
-                        document.getElementById("input_nome2").placeholder = "Nome inválido";
-                        document.getElementById("input_nome2").style.borderColor = "#ff0000";
-                        document.getElementById("input_nome2").style.outline = "#ff0000";
-                        document.getElementById("input_nome2").focus();
-                        document.getElementById("input_nome2").onkeydown = function keydown_nome() {
-                            document.getElementById("input_nome2").placeholder = "";
-                            document.getElementById("input_nome2").style.borderColor = "#999999";
-                            document.getElementById("input_nome2").style.outline = null;
-                        }
-                        return false;
-                    } else {
-                    }
-                    return true;
-                }
-
-            </script>
-
-            <script>
-                function valida_nomePai() {
-                    var filter_nome = /^([a-zA-Zà-úÀ-Ú]|\s+)+$/;
-                    if (!filter_nome.test(document.getElementById("input_nome3").value)) {
-                        document.getElementById("input_nome3").value = '';
-                        document.getElementById("input_nome3").placeholder = "Nome inválido";
-                        document.getElementById("input_nome3").style.borderColor = "#ff0000";
-                        document.getElementById("input_nome3").style.outline = "#ff0000";
-                        document.getElementById("input_nome3").focus();
-                        document.getElementById("input_nome3").onkeydown = function keydown_nome() {
-                            document.getElementById("input_nome3").placeholder = "";
-                            document.getElementById("input_nome3").style.borderColor = "#999999";
-                            document.getElementById("input_nome3").style.outline = null;
-                        }
-                        return false;
-                    } else {
-                    }
-                    return true;
-                }
-
-            </script>
-
-            <script>
-                function valida_profissao() {
-                    var filter_nome = /^([a-zA-Zà-úÀ-Ú]|\s+)+$/;
-                    if (!filter_nome.test(document.getElementById("profissao").value)) {
-                        document.getElementById("profissao").value = '';
-                        document.getElementById("profissao").placeholder = "Nome inválido";
-                        document.getElementById("profissao").style.borderColor = "#ff0000";
-                        document.getElementById("profissao").style.outline = "#ff0000";
-                        document.getElementById("profissao").focus();
-                        document.getElementById("profissao").onkeydown = function keydown_nome() {
-                            document.getElementById("profissao").placeholder = "";
-                            document.getElementById("profissao").style.borderColor = "#999999";
-                            document.getElementById("profissao").style.outline = null;
-                        }
-                        return false;
-                    } else {
-                    }
-                    return true;
-                }
-
-            </script>
-
-            <script>
-                function valida_nacionalidade() {
-                    var filter_nome = /^([a-zA-Zà-úÀ-Ú]|\s+)+$/;
-                    if (!filter_nome.test(document.getElementById("nacionalidade").value)) {
-                        document.getElementById("nacionalidade").value = '';
-                        document.getElementById("nacionalidade").placeholder = "Nome inválido";
-                        document.getElementById("nacionalidade").style.borderColor = "#ff0000";
-                        document.getElementById("nacionalidade").style.outline = "#ff0000";
-                        document.getElementById("nacionalidade").focus();
-                        document.getElementById("nacionalidade").onkeydown = function keydown_nome() {
-                            document.getElementById("nacionalidade").placeholder = "";
-                            document.getElementById("nacionalidade").style.borderColor = "#999999";
-                            document.getElementById("nacionalidade").style.outline = null;
-                        }
-                        return false;
-                    } else {
-                    }
-                    return true;
-                }
-
-            </script>
-
-            <script>
-                function valida_estadoCivil() {
-                    var filter_nome = /^([a-zA-Zà-úÀ-Ú]|\s+)+$/;
-                    if (!filter_nome.test(document.getElementById("estadoCivil").value)) {
-                        document.getElementById("estadoCivil").value = '';
-                        document.getElementById("estadoCivil").placeholder = "Nome inválido";
-                        document.getElementById("estadoCivil").style.borderColor = "#ff0000";
-                        document.getElementById("estadoCivil").style.outline = "#ff0000";
-                        document.getElementById("estadoCivil").focus();
-                        document.getElementById("estadoCivil").onkeydown = function keydown_nome() {
-                            document.getElementById("estadoCivil").placeholder = "";
-                            document.getElementById("estadoCivil").style.borderColor = "#999999";
-                            document.getElementById("estadoCivil").style.outline = null;
-                        }
-                        return false;
-                    } else {
-                    }
-                    return true;
-                }
-
             </script>
         </div>
     </body>

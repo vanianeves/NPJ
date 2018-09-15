@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
-
 <body>
 <!-- Default box -->
 <div th:fragment="content" th:class="box">
@@ -20,7 +16,7 @@
                  th:classappend="${#fields.hasErrors('colaborador.nome')} ? has-error">
                 <label>Nome completo</label>
                 <input th:field="*{colaborador.nome}" id="input_nome" onblur="valida_nome()" type="text" th:value="*{colaborador.nome}"
-                       class="form-control" maxlength="50" data-th-accept-charset="UTF-8"/>
+                       class="form-control" maxlength="50"/>
                 <span th:class="help-block" th:if="${#fields.hasErrors('colaborador.nome')}"
                       th:errors="*{colaborador.nome}"></span>
             </div>
@@ -67,6 +63,7 @@
                        th:value="*{colaborador.carga_horaria}" class="form-control" min="1" max="60"/>
                 <span th:class="help-block" th:if="${#fields.hasErrors('colaborador.carga_horaria')}"
                       th:errors="*{colaborador.carga_horaria}"></span>
+
             </div>
 
             <div class="form-group col-md-6 col-sm-6"

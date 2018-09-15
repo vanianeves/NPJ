@@ -1,6 +1,5 @@
 package ufjf.br.controllers;
 
-import org.apache.catalina.connector.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -71,7 +70,6 @@ public class ColaboradorController {
 
 
     @PostMapping(value = "create")
-
     @Transactional
     public ModelAndView create(@ModelAttribute @Valid Colaborador colaborador, BindingResult result, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {

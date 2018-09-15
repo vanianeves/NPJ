@@ -10,7 +10,6 @@ import ufjf.br.models.*;
 import ufjf.br.service.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Null;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.Date;
@@ -39,9 +38,6 @@ public class AtendimentoInicialController {
 
     @Autowired
     private ProcessosService processosService;
-
-    @Autowired
-    private AlunosEParfistasPorAtendimento alunosEParfistasPorAtendimento;
 
 
     @RequestMapping(value = {"index"})
@@ -98,7 +94,7 @@ public class AtendimentoInicialController {
     }
 
 
- // NÃO ESQUECER DE DAR O ALTER TABLE NA TABELA DE ATENDIMENTO
+
 
 
 
@@ -114,9 +110,6 @@ public class AtendimentoInicialController {
             List<Colaborador> alunos = new ArrayList<>();
             List<Colaborador> bolsistasTP = new ArrayList<>();
             List<Desdobramentos> desdobramentos = desdobramentosService.findAll();
-            AlunosEParfistasPorAtendimento relacao = new AlunosEParfistasPorAtendimento();
-            List<AlunosParfistasPorAtendimento> alunosParaSalvar = new ArrayList<>();
-
 
             for (Colaborador colaborador:colaboradores)
             {
@@ -129,7 +122,7 @@ public class AtendimentoInicialController {
                 if(colaborador.getTipoColaborador().getTipo().equals("PARFISTA")&& colaborador.getAtivo())
                     parfistas.add(colaborador);
             }
-            ModelAndView mv = new ModelAndView("/atendimento/index");
+            ModelAndView mv = new ModelAndView("/atendimento/create");
             mv.addObject("atendimento",atendimento);
             mv.addObject("clientes",clientes);
             mv.addObject("alunos",alunos);
@@ -138,20 +131,12 @@ public class AtendimentoInicialController {
             mv.addObject("bolsistas",bolsistasTP);
             mv.addObject("colaboradores",colaboradores);
             mv.addObject("desdobramentos",desdobramentos);
-            mv.addObject("AlunosSalvar",alunosParaSalvar);
+
             return mv;
         }
-
         atendimentoInicialService.save(atendimento);
-        ModelAndView mv = new ModelAndView("redirect:/atendimento/index");
-       List<Cliente> clientes = null;
-       List<Colaborador> colaboradores = null;
-       List<Colaborador> parfistas = null;
-       List<Colaborador> professores = null;
-       List<Colaborador> alunos = null;
-       List<Colaborador> bolsistasTP = null;
-       List<Desdobramentos> desdobramentos = null;
-       AlunosEParfistasPorAtendimento relacao = null;
+
+       ModelAndView mv = new ModelAndView("/atendimento/index");
        return mv;
    }
 
@@ -276,6 +261,12 @@ public class AtendimentoInicialController {
 
 
    }
+
+
+
+
+
+
 
 
 

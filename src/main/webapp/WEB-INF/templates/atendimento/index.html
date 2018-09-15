@@ -27,10 +27,11 @@
             <tbody>
             <tr th:each="atendimento : ${atendimentos}">
                 <td th:text="${atendimento.getId()}"></td>
-
+                <td th:text="${atendimento.aluno1.getNome()}"></td>
+                <td th:text="${atendimento.aluno2.getNome()}"></td>
                 <td th:text="${atendimento.getProfessorOrientador().getNome()}"></td>
                 <td th:text="${atendimento.idce.getNome()}"></td>
-
+                <td th:text="${atendimento.ParteContrariaId.getNome()}"></td>
                 <td th:text="${atendimento.getDtAtendimento()}"></td>
                 <td>
                     <div class="btn-group pull-right">

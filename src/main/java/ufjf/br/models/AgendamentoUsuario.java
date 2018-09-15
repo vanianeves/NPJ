@@ -1,5 +1,6 @@
 package ufjf.br.models;
 
+
 import org.hibernate.annotations.Cascade;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.stereotype.Service;

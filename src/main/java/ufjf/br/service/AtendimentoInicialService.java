@@ -34,6 +34,7 @@ public class AtendimentoInicialService {
 
     public void insere(int id){
 
+
     }
 
 
