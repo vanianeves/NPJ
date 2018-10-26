@@ -56,7 +56,7 @@
                     <select class="form-control " name="demanda_id" id="demanda_id" th:field="${atendimento.demandaJuridica.id}">
                         <option value="">Selecione a Vara de Distribuição</option>
                         <option th:each="demanda: ${demanda}" th:value="${demanda.id}"
-                                th:text="${demanda.demanda}"></option>
+                                th:text="${demanda.demanda_juridica}"></option>
                     </select>
 
                 </div>
