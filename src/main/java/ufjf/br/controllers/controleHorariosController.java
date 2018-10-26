@@ -64,20 +64,7 @@ public class controleHorariosController {
     }
 
     @PostMapping("/create/{id}")
-    @Transactional
     public ModelAndView create( @PathVariable("id") Integer id, @ModelAttribute @Valid PreAtendimento preAtendimento, BindingResult result){
-
-        logger.info(preAtendimento.hashCode());
-        if (result.hasErrors()) {
-            ModelAndView mv = new ModelAndView("/controleHorario/create");
-            mv.addObject("atendimento", preAtendimento);
-            mv.addObject("clientes", this.clienteService.findAll());
-            mv.addObject("demanda",demandaJuridicaService.findAll());
-
-            return mv;
-        }
-
-
 
 
         PreAtendimento atendimento = preAtendimentoService.findOne(id);
@@ -112,15 +99,6 @@ public class controleHorariosController {
     @Transactional
     public ModelAndView save( @PathVariable("id") Integer id, @ModelAttribute @Valid PreAtendimento preAtendimento, BindingResult result){
 
-        logger.info(preAtendimento.hashCode());
-        if (result.hasErrors()) {
-            ModelAndView mv = new ModelAndView("/controleHorario/update ");
-            mv.addObject("atendimento", preAtendimento);
-            mv.addObject("clientes", this.clienteService.findAll());
-            mv.addObject("demanda",demandaJuridicaService.findAll());
-
-            return mv;
-        }
 
 
         PreAtendimento atendimento = preAtendimentoService.findOne(id);
@@ -129,6 +107,18 @@ public class controleHorariosController {
         preAtendimentoService.save(atendimento);
 
         return new ModelAndView("redirect:/controleHorario/index");
+
+       /* logger.info(preAtendimento.hashCode());
+        if (result.hasErrors()) {
+            ModelAndView mv = new ModelAndView("/controleHorario/update ");
+            mv.addObject("atendimento", preAtendimento);
+            mv.addObject("clientes", this.clienteService.findAll());
+            mv.addObject("demanda",demandaJuridicaService.findAll());
+
+            return mv;
+        }*/
+
+
     }
 
 

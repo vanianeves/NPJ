@@ -19,7 +19,7 @@ public class DemandaJuridica {
     public String toString()
     {
         return "DemandaJuridica{"+"id="+ id +
-                ", demanda_juridica ='" + demanda+ '}';
+                ", demanda='" + demanda+ '}';
     }
     public DemandaJuridica()
     {
